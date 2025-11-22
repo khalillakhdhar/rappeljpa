@@ -7,11 +7,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class User {
+public class User extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	
 	@Column(nullable = false)
 	private String nom;
 	@Column(nullable = false,unique = true)
@@ -20,12 +18,7 @@ public class User {
 	private String password;
 	@Column(columnDefinition = "varchar(20) default 'utilisateur' ")
 	private String role;
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public String getNom() {
 		return nom;
 	}
