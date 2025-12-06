@@ -1,10 +1,15 @@
 package com.elitech.model;
 
+import java.util.Set;
+
+import org.hibernate.annotations.ManyToAny;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class User extends BaseEntity {
@@ -18,6 +23,10 @@ public class User extends BaseEntity {
 	private String password;
 	@Column(columnDefinition = "varchar(20) default 'utilisateur' ")
 	private String role;
+	@OneToOne(mappedBy = "user")
+	private Profile profile;
+	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	private Set<Formation> formations;
 	
 	public String getNom() {
 		return nom;
@@ -42,6 +51,12 @@ public class User extends BaseEntity {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public Profile getProfile() {
+		return profile;
+	}
+	public void setProfile(Profile profile) {
+		this.profile = profile;
 	}
 	
 }

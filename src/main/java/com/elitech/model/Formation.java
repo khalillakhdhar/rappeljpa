@@ -1,10 +1,13 @@
 package com.elitech.model;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -20,6 +23,10 @@ private String description;
 private String formateur;
 @Column(nullable = true)
 private int duree;
+@ManyToMany(mappedBy = "formations")
+private Set<User> users;
+
+
 
 public String getTitre() {
 	return titre;
